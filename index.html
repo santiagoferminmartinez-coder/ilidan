@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command & Conquer: Generals - Zero Hour</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body class="portada">
+
+    <header class="hero">
+
+        <!-- CAMBIA ESTA IMAGEN POR TU PORTADA -->
+        <img src="portada.jpg" class="imagen-portada" alt="Portada de Generals Zero Hour">
+
+        <div class="hero-contenido">
+            <p class="subtitulo">COMMAND & CONQUER</p>
+
+            <h1>GENERALS</h1>
+
+            <h2>ZERO HOUR</h2>
+
+            <p>
+                Presentación interactiva de las tres grandes facciones
+                del juego.
+            </p>
+
+            <a href="#facciones" class="boton principal">
+                EXPLORAR FACCIONES
+            </a>
+        
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section id="facciones" class="seccion">
+
+            <h2 class="titulo">ELIGE TU FACCION</h2>
+
+            <div class="facciones">
+
+                <a href="usa.html" class="faccion-card usa-card">
+                    <div class="icono-faccion">🇺🇸</div>
+                    <h3>USA</h3>
+                    <p>
+                        Tecnología avanzada, aviación y unidades de alta
+                        precisión.
+                    </p>
+                    <span>VER USA →</span>
+                </a>
+
+
+                <a href="china.html" class="faccion-card china-card">
+                    <div class="icono-faccion">🇨🇳</div>
+                    <h3>CHINA</h3>
+                    <p>
+                        Grandes ejércitos, tanques y poderosa tecnología
+                        militar.
+                    </p>
+                    <span>VER CHINA →</span>
+                </a>
+
+
+                <a href="gla.html" class="faccion-card gla-card">
+                    <div class="icono-faccion">☠</div>
+                    <h3>GLA</h3>
+                    <p>
+                        Movilidad, túneles, camuflaje y ataques rápidos.
+                    </p>
+                    <span>VER GLA →</span>
+                </a>
+
+            </div>
+
+        </section>
+        <!-- =====================================
+     GAMEPLAYS DE ZERO HOUR
+===================================== -->
+
+<section id="gameplays" class="gameplays">
+
+    <h2 class="titulo">GAMEPLAYS DE ZERO HOUR</h2>
+
+    <p>
+        Mira partidas y gameplays de Command & Conquer: Generals Zero Hour.
+    </p>
+
+    <div class="videos-grid">
+
+        <div class="video">
+            <iframe
+                src="https://www.youtube.com/embed/ID_DEL_VIDEO"
+                title="Gameplay de Generals Zero Hour"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="video">
+            <iframe
+                src="https://www.youtube.com/embed/ID_DEL_VIDEO"
+                title="Gameplay de Generals Zero Hour"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- DESCUBRIR FACCIÓN -->
+
+        <section class="descubrir">
+
+            <h2>¿NO SABES QUÉ FACCION ELEGIR?</h2>
+
+            <p>
+                Responde unas preguntas y descubre qué estilo de juego
+                coincide más con tus preferencias.
+            </p>
+
+            <button onclick="iniciarTest()" class="boton descubrir-boton">
+                DESCUBRIR MI FACCION
+            </button>
+
+            <div id="test" class="test oculto">
+
+                <h3 id="pregunta"></h3>
+
+                <div id="respuestas"></div>
+
+            </div>
+
+            <div id="resultado" class="resultado oculto"></div>
+
+        </section>
+
+        <!-- =====================================
+     COMPARACIÓN DE UNIDADES
+===================================== -->
+
+<section id="comparacion" class="comparacion">
+
+    <span class="etiqueta-comparacion">
+        COMPARACIÓN
+    </span>
+
+    <h2>COMPARADOR DE UNIDADES</h2>
+
+    <p class="intro-comparacion">
+        Compará las unidades de USA, China y GLA según sus
+        características dentro de Generals: Zero Hour.
+    </p>
+
+
+    <!-- FILTROS -->
+
+    <div class="filtros-comparacion">
+
+        <button onclick="filtrarUnidades('todas')">
+            TODAS
+        </button>
+
+        <button onclick="filtrarUnidades('infanteria')">
+            INFANTERÍA
+        </button>
+
+        <button onclick="filtrarUnidades('vehiculo')">
+            VEHÍCULOS
+        </button>
+
+        <button onclick="filtrarUnidades('tanque')">
+            TANQUES
+        </button>
+
+        <button onclick="filtrarUnidades('antiaereo')">
+            ANTIAÉREO
+        </button>
+
+    </div>
+
+
+    <!-- TABLA -->
+
+    <div class="tabla-comparacion">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>UNIDAD</th>
+                    <th>FACCION</th>
+                    <th>TIPO</th>
+                    <th>RESISTENCIA</th>
+                    <th>DAÑO</th>
+                    <th>VS INFANTERÍA</th>
+                    <th>VS VEHÍCULOS</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tabla-unidades">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- LEYENDA -->
+
+    <div class="leyenda-comparacion">
+
+        <p>
+            <strong>1</strong> = Bajo
+        </p>
+
+        <p>
+            <strong>2</strong> = Medio-bajo
+        </p>
+
+        <p>
+            <strong>3</strong> = Medio
+        </p>
+
+        <p>
+            <strong>4</strong> = Alto
+        </p>
+
+        <p>
+            <strong>5</strong> = Muy alto
+        </p>
+
+    </div>
+
+</section>
+
+
+        <section class="informacion">
+
+            <h2>COMMAND & CONQUER: GENERALS - ZERO HOUR</h2>
+
+            <p>
+                Zero Hour es una expansión de Command & Conquer: Generals
+                que amplía el juego original con nuevos generales, unidades,
+                edificios y posibilidades estratégicas.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Proyecto escolar - Command & Conquer: Generals - Zero Hour</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
