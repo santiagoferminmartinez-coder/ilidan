@@ -38,17 +38,17 @@ const generales = {
         unidades: [
             {
                 nombre: "King Raptor",
-                imagen: "imagenes/usa/king-raptor.jpg",
-                descripcion: "Versión especializada del Raptor del Air Force General."
+                imagen: "King_Raptor.webp",
+                descripcion: "Versión especializada del Raptor del Air Force General. Con un sistema defensivo de laser de punta para los misiles enemigos, con cohetes adicionales teledirigidos y puede revelar las unidades camufladas"
             },
             {
                 nombre: "Combat Chinook",
-                imagen: "imagenes/usa/combat-chinook.jpg",
-                descripcion: "Versión especializada del Chinook que permite transportar infantería con capacidades adicionales."
+                imagen: "combat chinock.jpg",
+                descripcion: "Versión especializada del Chinook que permite transportar infantería que pueda atacar desde el (8 soldados)"
             },
             {
                 nombre: "Stealth Comanche",
-                imagen: "imagenes/usa/stealth-comanche.jpg",
+                imagen: "comanche.webp",
                 descripcion: "Comanche que incorpora capacidades de sigilo."
             }
         ]
@@ -90,16 +90,16 @@ const generales = {
             {
                 nombre: "Laser Tank",
                 imagen: "Laser_Tank.webp",
-                descripcion: "Tanque equipado con un sistema de ataque láser."
+                descripcion: "Tanque equipado con un sistema de ataque láser. Sin energia no funcionan"
             },
             {
                 nombre: "Laser Avenger",
                 imagen: "avenger.jpeg",
-                descripcion: "Variante especializada del Avenger."
+                descripcion: "Una rebaja del precio del Avenger."
             },
             {
                 nombre: "Laser Defense Turret",
-                imagen: "torreta laser",
+                imagen: "torreta laser.webp",
                 descripcion: "Defensa especializada basada en tecnología láser."
             }
         ]
@@ -150,7 +150,7 @@ const generales = {
             },
             {
                 nombre: "Avenger",
-                imagen: "imagenes/usa/avenger.jpg",
+                imagen: "avenger.jpeg",
                 descripcion: "Vehículo de apoyo aéreo y defensivo."
             }
         ]
@@ -194,18 +194,18 @@ const generales = {
 
         unidades: [
             {
-                nombre: "Emperor.webp",
-                imagen: "imagenes/china/emperor-overlord.jpg",
+                nombre: "Emperor",
+                imagen: "Emperor.webp",
                 descripcion: "Versión especial del Overlord exclusiva del Tank General."
             },
             {
                 nombre: "Battle Master",
-                imagen: "imagenes/china/battle-master.jpg",
+                imagen: "Battlemaster_Tank.webp",
                 descripcion: "Tanque principal que recibe mejoras especiales."
             },
             {
                 nombre: "Gattling Tank",
-                imagen: "imagenes/china/gattling-tank.jpg",
+                imagen: "GattlingTank.webp",
                 descripcion: "Vehículo especializado en defensa contra determinadas unidades."
             }
         ]
@@ -247,16 +247,16 @@ const generales = {
             {
                 nombre: "Mini-Gunner",
                 imagen: "Mini-Gunner.webp",
-                descripcion: "Unidad de infantería especializada."
+                descripcion: "Unidad de infantería especializada capaz de derribar la aviacion."
             },
             {
                 nombre: "Super Hacker",
-                imagen: "imagenes/china/super-hacker.jpg",
+                imagen: "Hacker.webp",
                 descripcion: "Versión especializada del Hacker."
             },
             {
                 nombre: "Super Lotus",
-                imagen: "imagenes/china/super-lotus.jpg",
+                imagen: "Super_Lotus_Icons.webp",
                 descripcion: "Versión especializada de Black Lotus."
             }
         ]
@@ -268,13 +268,13 @@ const generales = {
         faccion: "CHINA",
         pagina: "china.html",
 
-        nombre: "tao.jpeg",
+        nombre: "Tsing Shi Tao",
 
         titulo: "Nuke General",
 
         tipo: "TECNOLOGÍA NUCLEAR",
 
-        imagen: "imagenes/china/nuke-general.jpg",
+        imagen: "tao.jpeg",
 
         descripcion:
             "General especializado en tecnología nuclear. Sus fuerzas incorporan modificaciones especiales a tanques, aeronaves y estructuras.",
@@ -298,16 +298,16 @@ const generales = {
             {
                 nombre: "Nuke MiG",
                 imagen: "Nuke_Mig.webp",
-                descripcion: "Variante especializada del MiG."
+                descripcion: "Variante especializada del MiG. Con 2 misiles nucleares que dejqan radiacion"
             },
             {
                 nombre: "Nuclear Helix",
-                imagen: "imagenes/china/nuclear-helix.jpg",
+                imagen: "Helix.webp",
                 descripcion: "Helix con una mejora nuclear especial."
             },
             {
                 nombre: "Nuke Cannon",
-                imagen: "imagenes/china/nuke-cannon.jpg",
+                imagen: "Nuke_Cannon.webp",
                 descripcion: "Unidad de artillería especializada."
             }
         ]
@@ -357,7 +357,7 @@ const generales = {
             },
             {
                 nombre: "Toxin Terrorist",
-                imagen: "imagenes/gla/toxin-terrorist.jpg",
+                imagen: "terrorist.jpeg",
                 descripcion: "Variante especializada del Terrorist."
             },
             {
@@ -403,17 +403,17 @@ const generales = {
         unidades: [
             {
                 nombre: "Stealth Rebel",
-                imagen: "imagenes/gla/stealth-rebel.jpg",
+                imagen: "Rebel.webp",
                 descripcion: "Rebelde especializado en las capacidades de sigilo."
             },
             {
                 nombre: "Saboteur",
-                imagen: "imagenes/gla/saboteur.jpg",
-                descripcion: "Unidad especializada en sabotaje dentro del juego."
+                imagen: "Saboteur.webp",
+                descripcion: "Unidad especializada en sabotaje dentro del juego.Puede dejar inactivo los edificios, sin energia los reactores o robar dinero del centro de suministros"
             },
             {
                 nombre: "Hijacker",
-                imagen: "imagenes/gla/hijacker.jpg",
+                imagen: "Hijacker.webp",
                 descripcion: "Unidad especializada en capturar determinados vehículos."
             }
         ]
@@ -453,19 +453,19 @@ const generales = {
 
         unidades: [
             {
-                nombre: "Technical",
-                imagen: "imagenes/gla/technical.jpg",
-                descripcion: "Vehículo ligero de la GLA con modificaciones disponibles según el general."
+                nombre: "Terrorist",
+                imagen: "Terrorist.jpeg",
+                descripcion: "Con un Aumento del daño de la explosion."
             },
             {
                 nombre: "Bomb Truck",
-                imagen: "imagenes/gla/bomb-truck.jpg",
-                descripcion: "Unidad especializada de la GLA."
+                imagen: "Bomb_Truck.webp",
+                descripcion: "Con una rebaja del precio."
             },
             {
                 nombre: "SCUD Launcher",
-                imagen: "imagenes/gla/scud-launcher.jpg",
-                descripcion: "Unidad de ataque a distancia de la GLA."
+                imagen: "Scud_launcher.webp",
+                descripcion: "Con Aumento del daño de la hojiva. Sin capacidad de toxinas"
             }
         ]
     }
@@ -611,3 +611,4 @@ if (!general) {
         general.pagina;
 
 }
+
