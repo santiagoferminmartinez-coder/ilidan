@@ -353,17 +353,17 @@ const generales = {
             {
                 nombre: "Toxin Rebel",
                 imagen: "Toxin_Rebel.webp",
-                descripcion: "Versión especializada del Rebelde."
+                descripcion: "Versión especializada del Rebelde.Asi como los tractores de toxinas, puede disparar un chorro de toxinas"
             },
             {
                 nombre: "Toxin Terrorist",
                 imagen: "terrorist.jpeg",
-                descripcion: "Variante especializada del Terrorist."
+                descripcion: "Variante especializada del Terrorist. Puede djar rastros de toxinas luego de la explosion"
             },
             {
                 nombre: "Toxin Tunnel Network",
                 imagen: "Toxin_Network.webp",
-                descripcion: "Variante especializada del Tunnel Network."
+                descripcion: "Variante especializada del Tunnel Network. Puede disparar un chorro de Toxinas"
             }
         ]
     },
