@@ -298,12 +298,12 @@ const generales = {
             {
                 nombre: "Nuke MiG",
                 imagen: "Nuke_Mig.webp",
-                descripcion: "Variante especializada del MiG. Con 2 misiles nucleares que dejqan radiacion"
+                descripcion: "Variante especializada del MiG. Con 2 misiles nucleares que dejan radiacion"
             },
             {
                 nombre: "Nuclear Helix",
                 imagen: "Helix.webp",
-                descripcion: "Helix con una mejora nuclear especial."
+                descripcion: "Helix con una mejora nuclear especial. Remplazada por una bomba nuclear que puede dejar radiacion"
             },
             {
                 nombre: "Nuke Cannon",
