@@ -505,27 +505,29 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarUnidadesComparacion("todas");
 
 });
+
+
 // =====================================
 // REPRODUCTOR DE MÚSICA POR FACCIONES
 // =====================================
 
 const musicaFacciones = {
     usa: [
-        "audios/usa/usa1.mp3",
-        "audios/usa/usa2.mp3",
-        "audios/usa/usa3.mp3"
+        "music - USA Battle theme 1(MP3_160K).mp3",
+        "Soundtrack - Usa Battle 2 Theme(MP3_160K).mp3",
+        "USA Soundtrack - Theme 3(MP3_160K).mp3"
     ],
 
     china: [
-        "audios/china/china1.mp3",
-        "audios/china/china2.mp3",
+        "Soundtrack - China Battle 3 Theme(MP3_160K).mp3",
+        "Soundtrack - China Battle 4 Theme(MP3_160K).mp3",
         "audios/china/china3.mp3"
     ],
 
     gla: [
         "zero Hour - 04. GLA Anthem(MP3_160K).mp3",
-        "audios/gla/gla2.mp3",
-        "audios/gla/gla3.mp3"
+        "Glory(MP3_160K).mp3",
+        "GLA Battle Theme 3(MP3_160K).mp3"
     ]
 };
 
@@ -540,9 +542,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const faccionPagina = document.body.dataset.faccion;
 
     if (musicaFacciones[faccionPagina]) {
-        faccionActual = faccionPagina;
-        actualizarNombreCancion();
-    }
+    faccionActual = faccionPagina;
+    actualizarNombreCancion();
+
+    reproducirMusica();
+}
 
     // Botones del reproductor
     const botonReproducir = document.getElementById("btnMusica");
@@ -574,8 +578,12 @@ function reproducirMusica() {
     if (!faccionActual) return;
 
     const lista = musicaFacciones[faccionActual];
+    const ruta = lista[indiceCancion];
 
-    reproductorMusica.src = lista[indiceCancion];
+    // Solo cambia el archivo si es una canción diferente
+    if (reproductorMusica.getAttribute("src") !== ruta) {
+        reproductorMusica.src = ruta;
+    }
 
     reproductorMusica.play().catch(error => {
         console.log("No se pudo reproducir el audio:", error);
@@ -631,4 +639,3 @@ function actualizarNombreCancion() {
 
 // Pasar automáticamente a la siguiente al terminar
 reproductorMusica.addEventListener("ended", siguienteCancion);
-
