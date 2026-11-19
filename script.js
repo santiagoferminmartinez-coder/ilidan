@@ -505,3 +505,130 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarUnidadesComparacion("todas");
 
 });
+// =====================================
+// REPRODUCTOR DE MÚSICA POR FACCIONES
+// =====================================
+
+const musicaFacciones = {
+    usa: [
+        "audios/usa/usa1.mp3",
+        "audios/usa/usa2.mp3",
+        "audios/usa/usa3.mp3"
+    ],
+
+    china: [
+        "audios/china/china1.mp3",
+        "audios/china/china2.mp3",
+        "audios/china/china3.mp3"
+    ],
+
+    gla: [
+        "zero Hour - 04. GLA Anthem(MP3_160K).mp3",
+        "audios/gla/gla2.mp3",
+        "audios/gla/gla3.mp3"
+    ]
+};
+
+let faccionActual = null;
+let indiceCancion = 0;
+
+const reproductorMusica = new Audio();
+
+// Detectar la facción de la página
+document.addEventListener("DOMContentLoaded", function () {
+
+    const faccionPagina = document.body.dataset.faccion;
+
+    if (musicaFacciones[faccionPagina]) {
+        faccionActual = faccionPagina;
+        actualizarNombreCancion();
+    }
+
+    // Botones del reproductor
+    const botonReproducir = document.getElementById("btnMusica");
+    const botonPausar = document.getElementById("btnPausa");
+    const botonSiguiente = document.getElementById("btnSiguiente");
+    const botonAnterior = document.getElementById("btnAnterior");
+
+    if (botonReproducir) {
+        botonReproducir.addEventListener("click", reproducirMusica);
+    }
+
+    if (botonPausar) {
+        botonPausar.addEventListener("click", detenerMusica);
+    }
+
+    if (botonSiguiente) {
+        botonSiguiente.addEventListener("click", siguienteCancion);
+    }
+
+    if (botonAnterior) {
+        botonAnterior.addEventListener("click", anteriorCancion);
+    }
+
+});
+
+// Reproducir canción actual
+function reproducirMusica() {
+
+    if (!faccionActual) return;
+
+    const lista = musicaFacciones[faccionActual];
+
+    reproductorMusica.src = lista[indiceCancion];
+
+    reproductorMusica.play().catch(error => {
+        console.log("No se pudo reproducir el audio:", error);
+    });
+
+    actualizarNombreCancion();
+}
+
+// Pausar música
+function detenerMusica() {
+    reproductorMusica.pause();
+}
+
+// Siguiente canción
+function siguienteCancion() {
+
+    if (!faccionActual) return;
+
+    indiceCancion++;
+
+    if (indiceCancion >= musicaFacciones[faccionActual].length) {
+        indiceCancion = 0;
+    }
+
+    reproducirMusica();
+}
+
+// Canción anterior
+function anteriorCancion() {
+
+    if (!faccionActual) return;
+
+    indiceCancion--;
+
+    if (indiceCancion < 0) {
+        indiceCancion = musicaFacciones[faccionActual].length - 1;
+    }
+
+    reproducirMusica();
+}
+
+// Actualizar nombre mostrado
+function actualizarNombreCancion() {
+
+    const nombre = document.getElementById("nombreCancion");
+
+    if (!nombre || !faccionActual) return;
+
+    nombre.textContent =
+        "Canción " + (indiceCancion + 1) +
+        " de " + musicaFacciones[faccionActual].length;
+}
+
+// Pasar automáticamente a la siguiente al terminar
+reproductorMusica.addEventListener("ended", siguienteCancion);
+
