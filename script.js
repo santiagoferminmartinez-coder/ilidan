@@ -525,7 +525,7 @@ const musicaFacciones = {
     ],
 
     gla: [
-        "zero Hour - 04. GLA Anthem(MP3_160K).mp3",
+        "Zero Hour - 04. GLA Anthem(MP3_160K).mp3",
         "Glory(MP3_160K).mp3",
         "GLA Battle Theme 3(MP3_160K).mp3"
     ]
