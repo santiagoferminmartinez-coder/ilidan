@@ -298,12 +298,12 @@ const generales = {
             {
                 nombre: "Nuke MiG",
                 imagen: "Nuke_Mig.webp",
-                descripcion: "Variante especializada del MiG. Con 2 misiles nucleares que dejan radiacion"
+                descripcion: "Variante especializada del MiG. Con 2 misiles nucleares que dejqan radiacion"
             },
             {
                 nombre: "Nuclear Helix",
                 imagen: "Helix.webp",
-                descripcion: "Helix con una mejora nuclear especial. Remplazada por una bomba nuclear que puede dejar radiacion"
+                descripcion: "Helix con una mejora nuclear especial."
             },
             {
                 nombre: "Nuke Cannon",
@@ -353,17 +353,17 @@ const generales = {
             {
                 nombre: "Toxin Rebel",
                 imagen: "Toxin_Rebel.webp",
-                descripcion: "Versión especializada del Rebelde.Asi como los tractores de toxinas, puede disparar un chorro de toxinas"
+                descripcion: "Versión especializada del Rebelde."
             },
             {
                 nombre: "Toxin Terrorist",
                 imagen: "terrorist.jpeg",
-                descripcion: "Variante especializada del Terrorist. Puede djar rastros de toxinas luego de la explosion"
+                descripcion: "Variante especializada del Terrorist."
             },
             {
                 nombre: "Toxin Tunnel Network",
                 imagen: "Toxin_Network.webp",
-                descripcion: "Variante especializada del Tunnel Network. Puede disparar un chorro de Toxinas"
+                descripcion: "Variante especializada del Tunnel Network."
             }
         ]
     },
@@ -611,4 +611,3 @@ if (!general) {
         general.pagina;
 
 }
-
