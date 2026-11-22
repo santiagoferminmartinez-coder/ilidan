@@ -679,11 +679,11 @@ const musicaFacciones = {
     china: [
         "Soundtrack - China Battle 3 Theme(MP3_160K).mp3",
         "Soundtrack - China Battle 4 Theme(MP3_160K).mp3",
-        "audios/china/china3.mp3"
+        "C_C generals Soundtrack - China Battle 1 Theme(MP3_160K).mp3"
     ],
 
     gla: [
-        "zero Hour - 04. GLA Anthem(MP3_160K).mp3",
+        "Zero Hour - 04. GLA Anthem(MP3_160K).mp3",
         "Glory(MP3_160K).mp3",
         "GLA Battle Theme 3(MP3_160K).mp3"
     ]
