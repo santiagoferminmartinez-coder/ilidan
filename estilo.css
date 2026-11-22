@@ -229,72 +229,755 @@ a {
 }
 
 
-/* =========================
-   DESCUBRIR
-========================= */
+
+/* ==========================================
+   DESCUBRIR MI FACCION
+   CENTRO DE COMANDO MILITAR
+========================================== */
 
 .descubrir {
-    padding: 80px 7%;
+    position: relative;
+    overflow: hidden;
+    padding: 110px 7%;
     text-align: center;
-    background: #111;
+
+    background:
+        radial-gradient(ellipse at top, #182536 0%, transparent 65%),
+        linear-gradient(180deg, #080d14, #05080d);
+
+    border-top: 1px solid #263747;
+    border-bottom: 1px solid #263747;
 }
 
+/* DETALLES DE FONDO */
 
-.descubrir h2 {
-    font-size: 35px;
-    margin-bottom: 15px;
+.descubrir::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size: 45px 45px;
+    opacity: .35;
+    pointer-events: none;
 }
 
-
-.descubrir p {
-    color: #ccc;
-    margin-bottom: 30px;
+.descubrir > h2,
+.descubrir > p,
+.descubrir > button,
+.descubrir > .test,
+.descubrir > .resultado {
+    position: relative;
+    z-index: 1;
 }
 
+.descubrir > h2 {
+    color: #e8f2ff;
+    font-size: clamp(27px, 4vw, 42px);
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+    text-shadow: 0 0 20px rgba(77,163,255,.3);
+}
+
+.descubrir > p {
+    max-width: 700px;
+    margin: 0 auto 35px;
+    color: #9baabd;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* BOTÓN INICIAL */
 
 .descubrir-boton {
-    background: #222;
+    padding: 18px 35px;
+
+    background: linear-gradient(135deg, #164c78, #102c48);
+    border: 1px solid #4da3ff;
+    border-radius: 5px;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    box-shadow: 0 0 25px rgba(25,118,210,.18);
+
+    transition: .3s ease;
 }
 
+.descubrir-boton:hover {
+    background: #2479bd;
+    border-color: #8bc5ff;
+    box-shadow: 0 0 30px rgba(77,163,255,.4);
+    transform: translateY(-4px);
+}
+
+
+/* ==========================================
+   PANEL DE PREGUNTAS
+========================================== */
 
 .test {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px;
-    border: 1px solid #555;
-    border-radius: 15px;
-}
+    position: relative;
 
-
-.test button {
     width: 100%;
-    margin: 10px 0;
-    padding: 15px;
-    border: 1px solid #555;
-    background: #181818;
+    max-width: 850px;
+
+    margin: 55px auto 0;
+    padding: 40px;
+
+    background:
+        linear-gradient(145deg, rgba(21,34,49,.98), rgba(7,13,21,.98));
+
+    border: 1px solid #34485c;
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5),
+        inset 0 0 35px rgba(77,163,255,.035);
+
+    text-align: left;
+}
+
+/* LÍNEA SUPERIOR */
+
+.test::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        #2479c9,
+        #4da3ff,
+        #2479c9
+    );
+}
+
+
+/* ==========================================
+   PROGRESO
+========================================== */
+
+.progreso-test {
+    margin-bottom: 40px;
+}
+
+.progreso-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-bottom: 12px;
+
+    color: #8fbde8;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#porcentaje-test {
+    color: #4da3ff;
+}
+
+.progreso-fondo {
+    width: 100%;
+    height: 7px;
+
+    background: #263343;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progreso-barra {
+    width: 20%;
+    height: 100%;
+
+    background: linear-gradient(90deg, #1765a8, #66bdff);
+
+    border-radius: 20px;
+
+    box-shadow: 0 0 15px #2479c9;
+
+    transition: width .4s ease;
+}
+
+
+/* ==========================================
+   PREGUNTAS
+========================================== */
+
+#pregunta {
+    min-height: 75px;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 30px;
+
     color: white;
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.4;
+    letter-spacing: .5px;
+}
+
+.animacion-pregunta {
+    animation: entradaPregunta .45s ease;
+}
+
+@keyframes entradaPregunta {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================
+   TARJETAS DE RESPUESTAS
+========================================== */
+
+#respuestas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.test .respuesta-opcion {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    width: 100%;
+    min-height: 85px;
+
+    margin: 0;
+    padding: 18px 22px;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid #344353;
     border-radius: 8px;
+
+    color: #e5edf7;
+    text-align: left;
+
     cursor: pointer;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    animation: entradaRespuesta .4s ease both;
+}
+
+@keyframes entradaRespuesta {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.test .respuesta-opcion:hover:not(:disabled) {
+    background: rgba(255,255,255,.09);
+    transform: translateX(7px);
+}
+
+.respuesta-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    background: rgba(255,255,255,.07);
+    border-radius: 8px;
+
+    font-size: 24px;
+}
+
+.respuesta-texto {
+    flex: 1;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.respuesta-flecha {
+    color: #77889a;
+    font-size: 22px;
+    transition: .25s;
 }
 
 
-.test button:hover {
-    background: #333;
+/* USA */
+
+.test .respuesta-usa:hover:not(:disabled),
+.test .respuesta-usa.respuesta-seleccionada {
+    border-color: #4da3ff;
+    background: rgba(25,118,210,.17);
+    box-shadow: 0 0 20px rgba(25,118,210,.13);
 }
 
+.respuesta-usa:hover .respuesta-icono {
+    background: rgba(25,118,210,.3);
+}
+
+.respuesta-usa:hover .respuesta-flecha {
+    color: #4da3ff;
+    transform: translateX(5px);
+}
+
+
+/* CHINA */
+
+.test .respuesta-china:hover:not(:disabled),
+.test .respuesta-china.respuesta-seleccionada {
+    border-color: #ff5252;
+    background: rgba(211,47,47,.17);
+    box-shadow: 0 0 20px rgba(211,47,47,.13);
+}
+
+.respuesta-china:hover .respuesta-icono {
+    background: rgba(211,47,47,.3);
+}
+
+.respuesta-china:hover .respuesta-flecha {
+    color: #ff5252;
+    transform: translateX(5px);
+}
+
+
+/* GLA */
+
+.test .respuesta-gla:hover:not(:disabled),
+.test .respuesta-gla.respuesta-seleccionada {
+    border-color: #8cff32;
+    background: rgba(76,175,80,.14);
+    box-shadow: 0 0 20px rgba(76,175,80,.13);
+}
+
+.respuesta-gla:hover .respuesta-icono {
+    background: rgba(76,175,80,.3);
+}
+
+.respuesta-gla:hover .respuesta-flecha {
+    color: #8cff32;
+    transform: translateX(5px);
+}
+
+.test .respuesta-opcion:disabled {
+    cursor: default;
+    opacity: .8;
+}
+
+
+/* ==========================================
+   RESULTADO FINAL
+========================================== */
 
 .resultado {
-    max-width: 700px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 15px;
-    background: #181818;
+    width: 100%;
+    max-width: 850px;
+
+    margin: 45px auto 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    background: linear-gradient(145deg, #172231, #080e16);
+
+    border: 1px solid #40536a;
+    border-radius: 12px;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,.55);
+
+    animation: entradaResultado .6s ease;
 }
 
+@keyframes entradaResultado {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.resultado-contenido {
+    padding: 45px 35px;
+}
+
+.resultado-etiqueta {
+    display: inline-block;
+
+    padding: 9px 15px;
+    margin-bottom: 25px;
+
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 4px;
+
+    color: #aebed0;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.resultado-bandera {
+    margin-bottom: 15px;
+    font-size: 65px;
+}
+
+.resultado-contenido h2 {
+    margin-bottom: 15px;
+
+    color: #aebed0;
+    font-size: 16px;
+    letter-spacing: 5px;
+}
+
+.resultado-contenido h3 {
+    margin-bottom: 15px;
+
+    color: white;
+    font-size: clamp(22px, 4vw, 35px);
+    letter-spacing: 2px;
+}
+
+.resultado-lema {
+    margin-bottom: 25px;
+
+    color: #aebed0;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    line-height: 1.8;
+}
+
+.resultado-descripcion {
+    max-width: 650px;
+
+    margin: 0 auto 35px;
+
+    color: #c2cbd6;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.resultado-contenido h4 {
+    margin-bottom: 18px;
+
+    color: #dce7f4;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+.resultado-caracteristicas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    max-width: 600px;
+    margin: 0 auto 35px;
+
+    list-style: none;
+}
+
+.resultado-caracteristicas li {
+    padding: 14px;
+
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 6px;
+
+    color: #dce7f4;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.resultado-caracteristicas li::before {
+    content: "◆";
+    margin-right: 10px;
+}
+
+
+/* PUNTUACIONES */
+
+.resultado-puntuacion {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin: 30px 0;
+}
+
+.resultado-puntuacion span {
+    padding: 12px 18px;
+
+    background: rgba(0,0,0,.25);
+    border: 1px solid #465568;
+    border-radius: 5px;
+
+    color: #dce7f4;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   COLORES DEL RESULTADO
+========================================== */
+
+/* USA */
+
+.resultado-usa {
+    border-color: #2479c9;
+    box-shadow: 0 0 35px rgba(25,118,210,.15);
+}
+
+.resultado-usa .resultado-etiqueta {
+    color: #75baff;
+    border-color: #2479c9;
+}
+
+.resultado-usa .resultado-lema {
+    color: #75baff;
+}
+
+.resultado-usa .resultado-caracteristicas li::before {
+    color: #4da3ff;
+}
+
+.resultado-usa .resultado-puntuacion span:first-child {
+    border-color: #2479c9;
+    color: #75baff;
+}
+
+
+/* CHINA */
+
+.resultado-china {
+    border-color: #c62828;
+    box-shadow: 0 0 35px rgba(211,47,47,.15);
+}
+
+.resultado-china .resultado-etiqueta {
+    color: #ff7777;
+    border-color: #c62828;
+}
+
+.resultado-china .resultado-lema {
+    color: #ff7777;
+}
+
+.resultado-china .resultado-caracteristicas li::before {
+    color: #ff5252;
+}
+
+.resultado-china .resultado-puntuacion span:nth-child(2) {
+    border-color: #c62828;
+    color: #ff7777;
+}
+
+
+/* GLA */
+
+.resultado-gla {
+    border-color: #388e3c;
+    box-shadow: 0 0 35px rgba(76,175,80,.15);
+}
+
+.resultado-gla .resultado-etiqueta {
+    color: #9bea69;
+    border-color: #388e3c;
+}
+
+.resultado-gla .resultado-lema {
+    color: #9bea69;
+}
+
+.resultado-gla .resultado-caracteristicas li::before {
+    color: #8cff32;
+}
+
+.resultado-gla .resultado-puntuacion span:nth-child(3) {
+    border-color: #388e3c;
+    color: #9bea69;
+}
+
+
+/* ==========================================
+   BOTONES DEL RESULTADO
+========================================== */
+
+.resultado-boton {
+    display: inline-block;
+
+    margin: 5px;
+    padding: 16px 25px;
+
+    background: #183a59;
+    border: 1px solid #4da3ff;
+    border-radius: 5px;
+
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.resultado-boton:hover {
+    background: #2479c9;
+    color: white;
+}
+
+.resultado-china .resultado-boton {
+    background: #451717;
+    border-color: #ff5252;
+}
+
+.resultado-china .resultado-boton:hover {
+    background: #b71c1c;
+}
+
+.resultado-gla .resultado-boton {
+    background: #17351a;
+    border-color: #8cff32;
+}
+
+.resultado-gla .resultado-boton:hover {
+    background: #286b2d;
+}
+
+.boton-repetir {
+    display: inline-block;
+
+    margin: 5px;
+    padding: 16px 25px;
+
+    background: transparent;
+    border: 1px solid #647386;
+    border-radius: 5px;
+
+    color: #dce7f4;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.boton-repetir:hover {
+    background: #26384b;
+    border-color: white;
+    transform: translateY(-3px);
+}
+
+
+/* ==========================================
+   ELEMENTO OCULTO
+========================================== */
 
 .oculto {
-    display: none;
+    display: none !important;
 }
+
+
+/* ==========================================
+   ADAPTACIÓN PARA CELULARES
+========================================== */
+
+@media (max-width: 650px) {
+
+    .descubrir {
+        padding: 75px 5%;
+    }
+
+    .descubrir > h2 {
+        font-size: 27px;
+        letter-spacing: 1px;
+    }
+
+    .test {
+        padding: 25px 18px;
+    }
+
+    #pregunta {
+        min-height: auto;
+        font-size: 21px;
+    }
+
+    .test .respuesta-opcion {
+        min-height: 75px;
+        padding: 13px;
+        gap: 12px;
+    }
+
+    .respuesta-icono {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .respuesta-texto {
+        font-size: 13px;
+    }
+
+    .resultado-contenido {
+        padding: 35px 18px;
+    }
+
+    .resultado-caracteristicas {
+        grid-template-columns: 1fr;
+    }
+
+    .resultado-puntuacion {
+        flex-direction: column;
+    }
+
+    .resultado-puntuacion span {
+        width: 100%;
+    }
+
+    .resultado-boton,
+    .boton-repetir {
+        width: 100%;
+        margin: 7px 0;
+    }
+
+}
+
 
 
 /* =========================
@@ -1102,31 +1785,91 @@ footer {
     }
 
 }
+
+/* =====================================
+   GAMEPLAYS DE ZERO HOUR
+===================================== */
+
 .gameplays {
-    padding: 60px 8%;
+    padding: 90px 8%;
     text-align: center;
+    background: linear-gradient(
+        180deg,
+        #080808,
+        #111820,
+        #080808
+    );
 }
 
-.gameplays p {
-    margin-bottom: 30px;
+.etiqueta-videos {
+    display: inline-block;
+    color: #4da3ff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.gameplays .titulo {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.descripcion-videos {
+    color: #aaa;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
 }
 
 .videos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .video {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    background: #15191f;
+    border: 1px solid #303943;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: .3s ease;
+    text-align: left;
+}
+
+.video:hover {
+    transform: translateY(-6px);
+    border-color: #4da3ff;
+    box-shadow: 0 10px 30px rgba(25, 118, 210, .2);
 }
 
 .video iframe {
+    display: block;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 16 / 9;
     border: none;
-    border-radius: 10px;
+}
+
+.video h3 {
+    padding: 18px;
+    color: white;
+    font-size: 16px;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 750px) {
+
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gameplays {
+        padding: 65px 5%;
+    }
+
 }
 
 /* =====================================
@@ -1366,4 +2109,223 @@ footer {
         right: 22px;
         font-size: 8px;
     }
+}
+
+/* ==========================================
+   SISTEMA DE AUDIO - IDENTIDAD DE FACCIÓN
+========================================== */
+
+.pagina-general .reproductor {
+    --audio-principal: #2479C9;
+    --audio-secundario: #65B5FF;
+    --audio-dorado: #D8B45A;
+    --audio-fondo: rgba(16, 41, 74, 0.28);
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid var(--audio-principal);
+    border-left: 4px solid var(--audio-secundario);
+
+    background:
+        linear-gradient(
+            120deg,
+            var(--audio-fondo),
+            rgba(10, 10, 10, 0.96)
+        );
+
+    box-shadow:
+        0 0 18px var(--audio-fondo),
+        inset 0 0 20px rgba(255,255,255,0.025);
+
+    transition: 0.35s ease;
+}
+
+
+/* DETALLE SUPERIOR */
+
+.pagina-general .reproductor::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--audio-principal),
+        var(--audio-secundario),
+        var(--audio-dorado)
+    );
+}
+
+
+/* ETIQUETAS Y TÍTULOS */
+
+.pagina-general .reproductor-etiqueta {
+    color: var(--audio-secundario);
+    letter-spacing: 3px;
+}
+
+.pagina-general .reproductor-info h2 {
+    color: white;
+    text-shadow:
+        0 0 12px var(--audio-principal);
+}
+
+.pagina-general .reproductor-info p {
+    color: var(--audio-secundario);
+}
+
+
+/* BOTONES */
+
+.pagina-general .boton-musica {
+    color: white;
+
+    border: 1px solid var(--audio-principal);
+
+    background: rgba(15, 15, 15, 0.9);
+
+    transition: 0.25s ease;
+}
+
+.pagina-general .boton-musica:hover {
+    color: white;
+
+    background: var(--audio-principal);
+
+    border-color: var(--audio-secundario);
+
+    box-shadow:
+        0 0 14px var(--audio-principal);
+
+    transform: translateY(-2px);
+}
+
+
+/* BOTÓN PRINCIPAL */
+
+.pagina-general .boton-musica.boton-play {
+    color: #111;
+
+    background: var(--audio-secundario);
+
+    border-color: var(--audio-secundario);
+
+    box-shadow:
+        0 0 12px var(--audio-principal);
+}
+
+
+/* PIE DEL REPRODUCTOR */
+
+.pagina-general .reproductor-pie {
+    color: var(--audio-dorado);
+}
+
+
+/* ==========================================
+   USA
+========================================== */
+
+.pagina-general[data-faccion="usa"] .reproductor {
+    --audio-principal: #2479C9;
+    --audio-secundario: #65B5FF;
+    --audio-dorado: #D8B45A;
+    --audio-fondo: rgba(16, 41, 74, 0.35);
+}
+
+
+/* ==========================================
+   CHINA
+========================================== */
+
+.pagina-general[data-faccion="china"] .reproductor {
+    --audio-principal: #B62932;
+    --audio-secundario: #FF5555;
+    --audio-dorado: #E6B94D;
+    --audio-fondo: rgba(90, 15, 20, 0.35);
+}
+
+
+/* ==========================================
+   GLA
+========================================== */
+
+.pagina-general[data-faccion="gla"] .reproductor {
+    --audio-principal: #557B32;
+    --audio-secundario: #9BCB55;
+    --audio-dorado: #C5AD78;
+    --audio-fondo: rgba(36, 57, 20, 0.4);
+}
+
+
+/* ==========================================
+   DETALLES SEGÚN LA ESPECIALIDAD
+========================================== */
+
+/* GRANGER - AVIACIÓN */
+
+.pagina-general[data-general="granger"] .reproductor {
+    --audio-secundario: #75D5FF;
+}
+
+
+/* TOWNES - TECNOLOGÍA LÁSER */
+
+.pagina-general[data-general="townes"] .reproductor {
+    --audio-secundario: #45A9FF;
+}
+
+
+/* ALEXANDER - SUPERARMAS */
+
+.pagina-general[data-general="alexander"] .reproductor {
+    --audio-secundario: #E5C36B;
+}
+
+
+/* KWAI - TANQUES */
+
+.pagina-general[data-general="kwai"] .reproductor {
+    --audio-secundario: #FF7043;
+}
+
+
+/* SHIN FAI - INFANTERÍA */
+
+.pagina-general[data-general="shin"] .reproductor {
+    --audio-secundario: #FFD166;
+}
+
+
+/* TAO - TECNOLOGÍA NUCLEAR */
+
+.pagina-general[data-general="tao"] .reproductor {
+    --audio-secundario: #FF9D42;
+}
+
+
+/* DR. THRAX - TOXINAS */
+
+.pagina-general[data-general="thrax"] .reproductor {
+    --audio-secundario: #B5E853;
+}
+
+
+/* KASSAD - SIGILO */
+
+.pagina-general[data-general="kassad"] .reproductor {
+    --audio-secundario: #B39DDB;
+}
+
+
+/* JUHZIZ - DEMOLICIÓN */
+
+.pagina-general[data-general="juhziz"] .reproductor {
+    --audio-secundario: #E5A34B;
 }
