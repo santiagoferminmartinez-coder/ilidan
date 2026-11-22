@@ -454,7 +454,7 @@ const generales = {
         unidades: [
             {
                 nombre: "Terrorist",
-                imagen: "Terrorist.jpeg",
+                imagen: "terrorist.jpeg",
                 descripcion: "Con un Aumento del daño de la explosion."
             },
             {
@@ -464,7 +464,7 @@ const generales = {
             },
             {
                 nombre: "SCUD Launcher",
-                imagen: "Scud_launcher.webp",
+                imagen: "Scud_Launcher.webp",
                 descripcion: "Con Aumento del daño de la hojiva. Sin capacidad de toxinas"
             }
         ]
