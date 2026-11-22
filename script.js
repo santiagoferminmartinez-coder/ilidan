@@ -1,3 +1,7 @@
+/* =====================================
+   SISTEMA: DESCUBRIR MI FACCION
+===================================== */
+
 let preguntaActual = 0;
 
 let puntos = {
@@ -6,70 +10,59 @@ let puntos = {
     gla: 0
 };
 
-
 const preguntas = [
 
     {
         pregunta: "¿Qué estilo de juego te llama más la atención?",
-
         respuestas: [
-            {
-                texto: "Tecnología avanzada y aviación",
-                faccion: "usa"
-            },
-            {
-                texto: "Grandes ejércitos y tanques",
-                faccion: "china"
-            },
-            {
-                texto: "Movilidad, túneles y camuflaje",
-                faccion: "gla"
-            }
+            { texto: "Tecnología avanzada y aviación", faccion: "usa", icono: "✈️" },
+            { texto: "Grandes ejércitos y tanques", faccion: "china", icono: "🚩" },
+            { texto: "Movilidad, túneles y camuflaje", faccion: "gla", icono: "☠️" }
         ]
     },
-
 
     {
         pregunta: "¿Qué tipo de ejército preferís?",
-
         respuestas: [
-            {
-                texto: "Un ejército pequeño pero tecnológico",
-                faccion: "usa"
-            },
-            {
-                texto: "Una fuerza grande y poderosa",
-                faccion: "china"
-            },
-            {
-                texto: "Un ejército rápido y flexible",
-                faccion: "gla"
-            }
+            { texto: "Un ejército pequeño pero tecnológico", faccion: "usa", icono: "🛰️" },
+            { texto: "Una fuerza numerosa y poderosa", faccion: "china", icono: "🛡️" },
+            { texto: "Un ejército rápido y flexible", faccion: "gla", icono: "⚡" }
         ]
     },
 
+    {
+        pregunta: "¿Qué unidad elegirías para dominar el campo de batalla?",
+        respuestas: [
+            { texto: "Aviones de combate y unidades especializadas", faccion: "usa", icono: "🛩️" },
+            { texto: "Tanques pesados y artillería", faccion: "china", icono: "🚜" },
+            { texto: "Vehículos ligeros y unidades móviles", faccion: "gla", icono: "🏴" }
+        ]
+    },
 
     {
-        pregunta: "¿Qué te interesa más?",
-
+        pregunta: "¿Qué estrategia se parece más a tu forma de jugar?",
         respuestas: [
-            {
-                texto: "Aviones y tecnología",
-                faccion: "usa"
-            },
-            {
-                texto: "Tanques y artillería",
-                faccion: "china"
-            },
-            {
-                texto: "Ataques sorpresa y movilidad",
-                faccion: "gla"
-            }
+            { texto: "Atacar con precisión y superioridad tecnológica", faccion: "usa", icono: "🎯" },
+            { texto: "Avanzar con fuerza y controlar el territorio", faccion: "china", icono: "⚔️" },
+            { texto: "Sorprender al rival y cambiar de posición", faccion: "gla", icono: "🌪️" }
+        ]
+    },
+
+    {
+        pregunta: "¿Qué ventaja considerás más importante?",
+        respuestas: [
+            { texto: "Superioridad aérea y tecnología", faccion: "usa", icono: "🔵" },
+            { texto: "Resistencia y potencia de fuego", faccion: "china", icono: "🔴" },
+            { texto: "Adaptabilidad y movilidad", faccion: "gla", icono: "🟢" }
         ]
     }
 
 ];
 
+
+/* =====================================
+   INICIAR TEST
+===================================== */
 
 function iniciarTest() {
 
@@ -81,35 +74,114 @@ function iniciarTest() {
         gla: 0
     };
 
-    document.getElementById("test").classList.remove("oculto");
+    const test = document.getElementById("test");
+    const resultado = document.getElementById("resultado");
 
-    document.getElementById("resultado").classList.add("oculto");
+    test.classList.remove("oculto");
+    resultado.classList.add("oculto");
+
+    // Crear el panel de progreso si todavía no existe
+    if (!document.getElementById("progreso-test")) {
+
+        const progreso = document.createElement("div");
+
+        progreso.id = "progreso-test";
+        progreso.className = "progreso-test";
+
+        progreso.innerHTML = `
+            <div class="progreso-info">
+                <span id="numero-pregunta"></span>
+                <span id="porcentaje-test"></span>
+            </div>
+
+            <div class="progreso-fondo">
+                <div id="progreso-barra"></div>
+            </div>
+        `;
+
+        test.prepend(progreso);
+    }
 
     mostrarPregunta();
+
+    test.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 }
 
+
+/* =====================================
+   MOSTRAR PREGUNTA
+===================================== */
 
 function mostrarPregunta() {
 
     const pregunta = preguntas[preguntaActual];
 
-    document.getElementById("pregunta").textContent =
-        pregunta.pregunta;
+    const titulo = document.getElementById("pregunta");
+    const respuestas = document.getElementById("respuestas");
 
-
-    const respuestas =
-        document.getElementById("respuestas");
+    titulo.textContent = pregunta.pregunta;
 
     respuestas.innerHTML = "";
 
+    // Actualizar progreso
+    const numero = document.getElementById("numero-pregunta");
+    const porcentaje = document.getElementById("porcentaje-test");
+    const barra = document.getElementById("progreso-barra");
 
-    pregunta.respuestas.forEach(respuesta => {
+    const numeroActual = preguntaActual + 1;
+    const totalPreguntas = preguntas.length;
+    const avance = (numeroActual / totalPreguntas) * 100;
+
+    numero.textContent =
+        "PREGUNTA " + numeroActual + " / " + totalPreguntas;
+
+    porcentaje.textContent =
+        Math.round(avance) + "% COMPLETADO";
+
+    barra.style.width = avance + "%";
+
+    // Animación de entrada
+    titulo.classList.remove("animacion-pregunta");
+
+    void titulo.offsetWidth;
+
+    titulo.classList.add("animacion-pregunta");
+
+    // Crear respuestas
+    pregunta.respuestas.forEach((respuesta, indice) => {
 
         const boton = document.createElement("button");
 
-        boton.textContent = respuesta.texto;
+        boton.type = "button";
+        boton.className =
+            "respuesta-opcion respuesta-" + respuesta.faccion;
 
-        boton.onclick = () => elegirRespuesta(respuesta.faccion);
+        boton.innerHTML = `
+            <span class="respuesta-icono">${respuesta.icono}</span>
+            <span class="respuesta-texto">${respuesta.texto}</span>
+            <span class="respuesta-flecha">➜</span>
+        `;
+
+        boton.style.animationDelay = (indice * 0.08) + "s";
+
+        boton.onclick = () => {
+
+            // Evitar seleccionar más de una respuesta
+            if (boton.disabled) return;
+
+            const botones = respuestas.querySelectorAll("button");
+
+            botones.forEach(b => b.disabled = true);
+
+            boton.classList.add("respuesta-seleccionada");
+
+            setTimeout(() => {
+                elegirRespuesta(respuesta.faccion);
+            }, 250);
+        };
 
         respuestas.appendChild(boton);
 
@@ -118,12 +190,15 @@ function mostrarPregunta() {
 }
 
 
+/* =====================================
+   REGISTRAR RESPUESTA
+===================================== */
+
 function elegirRespuesta(faccion) {
 
     puntos[faccion]++;
 
     preguntaActual++;
-
 
     if (preguntaActual < preguntas.length) {
 
@@ -138,77 +213,159 @@ function elegirRespuesta(faccion) {
 }
 
 
+/* =====================================
+   MOSTRAR RESULTADO FINAL
+===================================== */
+
 function mostrarResultado() {
 
-    let faccionFinal = "usa";
+    const resultado = document.getElementById("resultado");
 
-    if (
-        puntos.china > puntos.usa &&
-        puntos.china >= puntos.gla
-    ) {
-        faccionFinal = "china";
-    }
+    // Encontrar la puntuación más alta
+    const puntuacionMaxima = Math.max(
+        puntos.usa,
+        puntos.china,
+        puntos.gla
+    );
 
-    else if (
-        puntos.gla > puntos.usa &&
-        puntos.gla > puntos.china
-    ) {
-        faccionFinal = "gla";
-    }
+    // Detectar si hay empate
+    const empatadas = Object.keys(puntos).filter(
+        faccion => puntos[faccion] === puntuacionMaxima
+    );
 
+    // Si hay empate, seleccionar una de las facciones empatadas
+    const faccionFinal = empatadas[
+        Math.floor(Math.random() * empatadas.length)
+    ];
 
-    const nombres = {
-        usa: "USA 🇺🇸",
-        china: "CHINA 🇨🇳",
-        gla: "GLA ☠"
+    const datos = {
+
+        usa: {
+            nombre: "UNITED STATES OF AMERICA",
+            bandera: "🇺🇸",
+            color: "usa",
+            lema: "TECNOLOGÍA. PRECISIÓN. SUPERIORIDAD.",
+            descripcion:
+                "Tu perfil se identifica con la tecnología avanzada, la aviación y las unidades especializadas. Preferís la precisión y la superioridad tecnológica para dominar el campo de batalla.",
+            caracteristicas: [
+                "Tecnología avanzada",
+                "Superioridad aérea",
+                "Unidades especializadas",
+                "Ataques de precisión"
+            ]
+        },
+
+        china: {
+            nombre: "PEOPLE'S REPUBLIC OF CHINA",
+            bandera: "🇨🇳",
+            color: "china",
+            lema: "PODER. RESISTENCIA. DOMINIO.",
+            descripcion:
+                "Tu perfil coincide con una fuerza militar poderosa, basada en grandes ejércitos, tanques y potencia de fuego. Preferís avanzar con determinación y controlar el territorio.",
+            caracteristicas: [
+                "Grandes fuerzas terrestres",
+                "Tanques pesados",
+                "Artillería poderosa",
+                "Potencia de fuego"
+            ]
+        },
+
+        gla: {
+            nombre: "GLOBAL LIBERATION ARMY",
+            bandera: "☠️",
+            color: "gla",
+            lema: "MOVILIDAD. ASTUCIA. ADAPTACIÓN.",
+            descripcion:
+                "Tu perfil coincide con una estrategia flexible y sorprendente. Preferís la movilidad, el camuflaje y aprovechar distintas oportunidades durante la partida.",
+            caracteristicas: [
+                "Movilidad estratégica",
+                "Túneles",
+                "Camuflaje",
+                "Unidades versátiles"
+            ]
+        }
+
     };
 
+    const datosFinales = datos[faccionFinal];
 
-    const descripcion = {
+    const listaCaracteristicas = datosFinales.caracteristicas
+        .map(caracteristica => `<li>${caracteristica}</li>`)
+        .join("");
 
-        usa:
-        "Tu resultado coincide con un estilo basado en tecnología avanzada, aviación y unidades especializadas.",
-
-        china:
-        "Tu resultado coincide con un estilo basado en grandes fuerzas terrestres, tanques y tecnología pesada.",
-
-        gla:
-        "Tu resultado coincide con un estilo basado en movilidad, túneles, camuflaje y ataques rápidos."
-
-    };
-
-
-    const resultado =
-        document.getElementById("resultado");
-
+    resultado.className =
+        "resultado resultado-" + faccionFinal;
 
     resultado.innerHTML = `
 
-        <h2>Tu facción es:</h2>
+        <div class="resultado-contenido">
 
-        <h3>${nombres[faccionFinal]}</h3>
+            <span class="resultado-etiqueta">
+                INFORME DE SELECCIÓN COMPLETADO
+            </span>
 
-        <p>
-            ${descripcion[faccionFinal]}
-        </p>
+            <p class="resultado-bandera">
+                ${datosFinales.bandera}
+            </p>
 
-        <br>
+            <h2>TU FACCION ES</h2>
 
-        <a
-            href="${faccionFinal}.html"
-            class="boton"
-        >
-            EXPLORAR ${nombres[faccionFinal]}
-        </a>
+            <h3>${datosFinales.nombre}</h3>
+
+            <p class="resultado-lema">
+                ${datosFinales.lema}
+            </p>
+
+            <p class="resultado-descripcion">
+                ${datosFinales.descripcion}
+            </p>
+
+            <h4>CARACTERÍSTICAS PRINCIPALES</h4>
+
+            <ul class="resultado-caracteristicas">
+                ${listaCaracteristicas}
+            </ul>
+
+            <div class="resultado-puntuacion">
+
+                <span>USA: ${puntos.usa}</span>
+                <span>CHINA: ${puntos.china}</span>
+                <span>GLA: ${puntos.gla}</span>
+
+            </div>
+
+            <a
+                href="${faccionFinal}.html"
+                class="boton resultado-boton"
+            >
+                EXPLORAR ${faccionFinal.toUpperCase()} →
+            </a>
+
+            <button
+                type="button"
+                class="boton-repetir"
+                onclick="iniciarTest()"
+            >
+                ↻ REPETIR TEST
+            </button>
+
+        </div>
 
     `;
-
 
     document.getElementById("test").classList.add("oculto");
 
     resultado.classList.remove("oculto");
 
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
 }
+
+
+
 /* =====================================
    COMPARADOR DE UNIDADES
 ===================================== */
@@ -507,6 +664,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
 // =====================================
 // REPRODUCTOR DE MÚSICA POR FACCIONES
 // =====================================
@@ -521,11 +679,11 @@ const musicaFacciones = {
     china: [
         "Soundtrack - China Battle 3 Theme(MP3_160K).mp3",
         "Soundtrack - China Battle 4 Theme(MP3_160K).mp3",
-        "C_C generals Soundtrack - China Battle 1 Theme(MP3_160K).mp3"
+        "audios/china/china3.mp3"
     ],
 
     gla: [
-        "Zero Hour - 04. GLA Anthem(MP3_160K).mp3",
+        "zero Hour - 04. GLA Anthem(MP3_160K).mp3",
         "Glory(MP3_160K).mp3",
         "GLA Battle Theme 3(MP3_160K).mp3"
     ]
@@ -536,17 +694,20 @@ let indiceCancion = 0;
 
 const reproductorMusica = new Audio();
 
+
 // Detectar la facción de la página
 document.addEventListener("DOMContentLoaded", function () {
 
     const faccionPagina = document.body.dataset.faccion;
 
-    if (musicaFacciones[faccionPagina]) {
+    // Este reproductor funciona SOLAMENTE en las páginas de facciones
+    if (!musicaFacciones[faccionPagina]) return;
+
     faccionActual = faccionPagina;
+
     actualizarNombreCancion();
 
     reproducirMusica();
-}
 
     // Botones del reproductor
     const botonReproducir = document.getElementById("btnMusica");
@@ -572,6 +733,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
 // Reproducir canción actual
 function reproducirMusica() {
 
@@ -580,7 +742,6 @@ function reproducirMusica() {
     const lista = musicaFacciones[faccionActual];
     const ruta = lista[indiceCancion];
 
-    // Solo cambia el archivo si es una canción diferente
     if (reproductorMusica.getAttribute("src") !== ruta) {
         reproductorMusica.src = ruta;
     }
@@ -592,10 +753,12 @@ function reproducirMusica() {
     actualizarNombreCancion();
 }
 
+
 // Pausar música
 function detenerMusica() {
     reproductorMusica.pause();
 }
+
 
 // Siguiente canción
 function siguienteCancion() {
@@ -611,6 +774,7 @@ function siguienteCancion() {
     reproducirMusica();
 }
 
+
 // Canción anterior
 function anteriorCancion() {
 
@@ -625,6 +789,7 @@ function anteriorCancion() {
     reproducirMusica();
 }
 
+
 // Actualizar nombre mostrado
 function actualizarNombreCancion() {
 
@@ -636,6 +801,7 @@ function actualizarNombreCancion() {
         "Canción " + (indiceCancion + 1) +
         " de " + musicaFacciones[faccionActual].length;
 }
+
 
 // Pasar automáticamente a la siguiente al terminar
 reproductorMusica.addEventListener("ended", siguienteCancion);
