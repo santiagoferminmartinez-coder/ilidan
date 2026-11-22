@@ -454,7 +454,7 @@ const generales = {
         unidades: [
             {
                 nombre: "Terrorist",
-                imagen: "terrorist.jpeg",
+                imagen: "Terrorist.jpeg",
                 descripcion: "Con un Aumento del daño de la explosion."
             },
             {
@@ -464,7 +464,7 @@ const generales = {
             },
             {
                 nombre: "SCUD Launcher",
-                imagen: "Scud_Launcher.webp",
+                imagen: "Scud_launcher.webp",
                 descripcion: "Con Aumento del daño de la hojiva. Sin capacidad de toxinas"
             }
         ]
@@ -609,5 +609,20 @@ if (!general) {
 
     document.getElementById("volver-faccion-2").href =
         general.pagina;
+     /* IDENTIDAD VISUAL DEL GENERAL */
+
+document.body.dataset.faccion =
+    general.faccion.toLowerCase();
+
+document.body.dataset.general =
+    idGeneral;
+
+
+/* MUSICA DEL GENERAL */
+
+localStorage.setItem(
+    "faccionMusica",
+    general.faccion.toLowerCase()
+);
 
 }
